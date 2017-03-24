@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-		id          = "myfirstapp"
+		id          = "compassMemoApp"
         version     = "1.0.0" >
 
-    <name>Compas Memo</name>
-    <description>Nawigate to one from memorized locations</description>
+    <name>Compass Memo</name>
+    <description>Navigate to memorized locations</description>
     <author href="" email="piotr.miranowicz@microsoft.wsei.edu.pl">
 		Piotr Miranowicz
 	<icon src="img/icon.png" />
