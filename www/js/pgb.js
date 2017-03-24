@@ -24,7 +24,7 @@ function addNewLocation()
 	var imgData = ''
 	
 	navigator.camera.getPicture(
-		function(val) { imgData = val; },
-		function(val) {  alert('Failed because: ' + val); }
+		function(val) { imgData = val; alert('Photo OK'); },
+		function(val) { alert('Failed because: ' + val); }
 	);
 }
