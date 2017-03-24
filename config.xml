@@ -8,6 +8,7 @@
     <description>Nawigate to one from memorized locations</description>
     <author href="" email="piotr.miranowicz@microsoft.wsei.edu.pl">
 		Piotr Miranowicz
+	<icon src="img/icon.png" />
 	</author>
 	<platform name="android" />
 	
