@@ -18,3 +18,13 @@ function deviceInfo() {
 
 	document.getElementById("deviceDetails").innerHTML = info;	
 }
+
+function addNewLocation()
+{
+	var imgData = ''
+	
+	navigator.camera.getPicture(
+		function(val) { imgData = val; },
+		function(val) {  alert('Failed because: ' + val); }
+	);
+}
