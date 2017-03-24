@@ -9,30 +9,53 @@
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 	</head>
 	<body onload="init()">
-		
-		<!-- My app main page -->
-		<div data-role="page" id="pageone">
-		  <div data-role="header">
-			<h1>Hello World!</h1>
-		  </div>
-		  <div data-role="main" class="ui-content">
-			<p>Hi, I'm your mobile device</p>
-			<a href="#details" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" onclick="deviceInfo()">Let me introduce myself!</a>
-		  </div>
-		  <div data-role="footer" data-position="fixed">
-			<h1>(c) John Brown</h1>
-		  </div> 
+	
+		<!-- Navigation page -->
+		<div data-role="page" id="navigate">
+			<div data-role="header">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#navigate" class="ui-btn ui-btn-active">Navigate</a></li>
+						<li><a href="#locations" class="ui-btn">Locations</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div data-role="main" class="ui-content">
+				<p>Navigate page</p>
+				<a href="#details" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" onclick="deviceInfo()">Let me introduce myself!</a>
+			</div>
 		</div> 
 		
-		<!-- Mobile device details page -->
-		<div data-role="page" id="details" data-dialog="true">
-			<div data-role="header" data-theme="a">
-				<h1>It's me</h1>
+		<!-- Locations list page -->
+		<div data-role="page" id="locations">
+			<div data-role="header">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#navigate" class="ui-btn">Navigate</a></li>
+						<li><a href="#locations" class="ui-btn ui-btn-active">Locations</a></li>
+					</ul>
+				</div>
 			</div>
-			<div role="main" class="ui-content">
-				<p id="deviceDetails">Place for device details ...</p>
+			
+			<div data-role="main" class="ui-content">
+				<ul data-role="listview" data-theme="g" id="locationsList">
+					<li>location A</li>
+					<li>location B</li>
+					<li>location C</li>
+				</ul>
 			</div>
-		</div>		
+			
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a class="ui-btn ui-corner-all" data-icon="plus">Add new</a></li>
+						<li><a class="ui-btn ui-corner-all" data-icon="check">Navigate</a></li>
+						<li><a class="ui-btn ui-corner-all" data-icon="delete">Delete</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> 
 		
 	</body>
 </html>
