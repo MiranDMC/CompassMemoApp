@@ -1,8 +1,11 @@
+var gLastPosition;
+
 function init() 
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
-	updateCompass(100);
+	
+	navigator.geolocation.watchPosition(onGpsUpdated);
 }
 
 function onDeviceReady() 
@@ -59,4 +62,11 @@ function addNewLocation()
 		function(val) { lon = val.coords.latitude; val.coords.longitude; alert('Position:' + lon + ", " + lat); },
 		function(val) { alert('Failed to get geolocation: ' + val); }
 	);
+}
+
+function onGpsUpdated(position)
+{
+	gLastPosition = position;
+	
+	updateCompass("GPS data recived!");
 }
