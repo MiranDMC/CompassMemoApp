@@ -6,6 +6,7 @@ function init()
 	updateCompass("Waiting for GPS data...");
 	
 	navigator.geolocation.watchPosition(onGpsUpdated);
+	navigator.geolocation.getCurrentPosition(onGpsUpdated);
 }
 
 function onDeviceReady() 
