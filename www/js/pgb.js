@@ -2,7 +2,7 @@ function init()
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
-	//updateCompass(45);
+	updateCompass(100);
 }
 
 function onDeviceReady() 
