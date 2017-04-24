@@ -4,21 +4,21 @@ function init()
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
-	
-	if ("geolocation" in navigator)
-	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed);
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed);
-	}
-	else
-	{
-		alert("ERROR: Failed to obtain GPS position on your device!");
-	}
 }
 
 function onDeviceReady() 
 {
 	//navigator.notification.beep(2);
+	
+	if ("geolocation" in navigator)
+	{
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, {timeout:10000});
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, {timeout:10000});
+	}
+	else
+	{
+		alert("ERROR: Failed to obtain GPS position on your device!");
+	}
 }
 
 function updateCompass(angle)
