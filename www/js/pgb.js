@@ -12,8 +12,8 @@ function onDeviceReady()
 	
 	if ("geolocation" in navigator)
 	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, {timeout:10000});
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, {timeout:10000});
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, {timeout:100000});
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, {timeout:100000});
 	}
 	else
 	{
@@ -79,7 +79,8 @@ function onGpsUpdated(position)
 	updateCompass("GPS data recived!");
 }
 
-function onGpsFailed()
-{	
+function onGpsFailed(error)
+{
 	updateCompass("Error: Location data not available.");
+	alert('code: ' + error.code + '\n message: ' + error.message + '\n');
 }
