@@ -1,5 +1,11 @@
 var gLastPosition;
 
+var gGeoOptions = {
+  enableHighAccuracy: true, 
+  maximumAge : 30000, 
+  timeout : 27000
+};
+
 function init() 
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
@@ -12,12 +18,12 @@ function onDeviceReady()
 	
 	if ("geolocation" in navigator)
 	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, {timeout:100000});
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, {timeout:100000});
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	}
 	else
 	{
-		alert("ERROR: Failed to obtain GPS position on your device!");
+		alert("ERROR: Geolocation is not supported by your device!");
 	}
 }
 
@@ -74,9 +80,8 @@ function addNewLocation()
 
 function onGpsUpdated(position)
 {
-	gLastPosition = position;
-	
 	updateCompass("GPS data recived!");
+	gLastPosition = position;
 }
 
 function onGpsFailed(error)
