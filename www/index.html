@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 		<script src="js/pgb.js"></script>
 		<script src="cordova.js"></script>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		
+		<style>
+			.ui-content { margin:2px; padding:2px; }
+			.border { border-color: #C1E0FF; border-width:2px; border-style: solid; }
+		</style>
+		
 	</head>
 	<body onload="init()">
 	
 		<!-- Navigation page -->
 		<div data-role="page" id="navigate">
-			<div data-role="header">
+			<div id="navHeader" data-role="header">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#navigate" class="ui-btn ui-btn-active">Navigate</a></li>
@@ -21,23 +27,26 @@
 				</div>
 			</div>
 			
-			<div data-role="main" class="ui-content" data-fullscreen="true" style="background-color:blue">
-				<svg width="100%" height="100%">
-					<circle cx="50%" cy="50%" r="40%" stroke="green" stroke-width="4" fill="yellow" />
+			<div id="navInfo" data-role="content" class="ui-content border" style="position: relative;">
+					<img src="https://jqmtricks.files.wordpress.com/2014/02/after.png" class="ui-content" height="200px" style="float:left"/>
+					<h1 class="ui-content" style="position: absolute; right: 50%; bottom: 50%; transform: translate(50%,50%);">Target location description</h1>
+			</div>
+			
+			<div id="navCompass" height="500px" data-role="content" class="ui-content border">
+				<svg id="canvas" width="100%" height="100%">
+					<polygon id="needle" points="0,-50 20,50 0,25 -20,50" style="fill:red; stroke:black; stroke-width:2;" />
 					Sorry, your browser does not support inline SVG.
 				</svg>
 			</div>
 			
-			<div data-role="main" class="ui-content" style="background-color:red">
-			</div>
-			
-			<div data-role="footer" data-position="fixed">
+			<div id="navFooter" data-role="footer" data-position="fixed">
+				<h1 class="ui-content">Distance 305m</h1>
 			</div>
 		</div> 
 		
 		<!-- Locations list page -->
 		<div data-role="page" id="locations">
-			<div data-role="header">
+			<div data-role="header" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#navigate" class="ui-btn">Navigate</a></li>
@@ -46,13 +55,11 @@
 				</div>
 			</div>
 			
-			<div data-role="main" class="ui-content">
-				<ul data-role="listview" data-theme="g" id="locationsList">
-					<li>location A</li>
-					<li>location B</li>
-					<li>location C</li>
-				</ul>
-			</div>
+			<ul data-role="listview" id="locationsList">
+				<li>location A</li>
+				<li>location B</li>
+				<li>location C</li>
+			</ul>
 			
 			<div data-role="footer" data-position="fixed">
 				<div data-role="navbar">
