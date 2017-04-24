@@ -16,7 +16,7 @@ function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 	
-	if ("geolocation" in navigator)
+	if (navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
