@@ -1,7 +1,8 @@
 function init() 
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
-	updateCompass();
+	updateCompass("Waiting for GPS data...");
+	//updateCompass(45);
 }
 
 function onDeviceReady() 
@@ -9,18 +10,39 @@ function onDeviceReady()
 	//navigator.notification.beep(2);
 }
 
-function updateCompass()
-{
+function updateCompass(angle)
+{	
+	var width = window.innerWidth;
+	
 	var height = window.innerHeight;
 	height -= document.getElementById("navHeader").offsetHeight;
 	height -= document.getElementById("navInfo").offsetHeight;
 	height -= document.getElementById("navFooter").offsetHeight;
-	height += 50;
+	height -= 20;
 	
-	document.getElementById("navCompass").height = height + "px";
+	document.getElementById("canvas").setAttribute( "height", height + "px" );
 	
 	var needle = document.getElementById("needle");
-	needle.setAttribute("transform", "rotate(0 60 60) translate(100, 100) ");
+	var text = document.getElementById("compassText");
+	
+	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
+	{
+		text.style.display = "none"; // hide
+		needle.style.display = "block"; // show
+		
+		var transform = "";
+		//transform += " translate(" + (width / 2) + ", " + (height / 2) + ")";
+		transform += " rotate(" + angle + ", 0, 0)";
+		//transform += " scale(" + scale + ", " + scale + ")";
+		
+		needle.setAttribute("transform", transform );
+	}
+	else
+	{
+		needle.style.display = "none"; // hide
+		text.style.display = "block"; // show
+		text.textContent = angle;
+	}
 }
 
 function addNewLocation()
