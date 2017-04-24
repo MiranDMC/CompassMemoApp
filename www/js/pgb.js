@@ -5,8 +5,15 @@ function init()
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
 	
-	navigator.geolocation.watchPosition(onGpsUpdated);
-	navigator.geolocation.getCurrentPosition(onGpsUpdated);
+	if ("geolocation" in navigator)
+	{
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed);
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed);
+	}
+	else
+	{
+		alert("ERROR: Failed to obtain GPS position on your device!");
+	}
 }
 
 function onDeviceReady() 
@@ -70,4 +77,9 @@ function onGpsUpdated(position)
 	gLastPosition = position;
 	
 	updateCompass("GPS data recived!");
+}
+
+function onGpsFailed()
+{	
+	updateCompass("Error: Location data not available.");
 }
