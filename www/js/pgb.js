@@ -18,9 +18,9 @@ function onDeviceReady()
 	 alert("bbb");
 	//navigator.notification.beep(2);
 	
-	/*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSystem) { alert("FS: " + fileSystem); }, 
-		function(event) { alert("ERROR: Failed to request local file system: " + event.target.error.code ); });*/
+		function(err) { alert("ERROR: Failed to request local file system: " + err ); });
 	
 	if (navigator.geolocation)
 	{
