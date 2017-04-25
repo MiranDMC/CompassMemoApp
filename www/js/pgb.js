@@ -18,7 +18,7 @@ function onDeviceReady()
 	//navigator.notification.beep(2);
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-		function(fileSystem) { alert("FS: " + fileSystem; }, 
+		function(fileSystem) { alert("FS: " + fileSystem); }, 
 		function(event) { alert("ERROR: Failed to request local file system: " + event.target.error.code ); });
 	
 	if (navigator.geolocation)
