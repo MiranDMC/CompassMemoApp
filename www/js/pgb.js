@@ -15,6 +15,7 @@ function init()
 
 function onDeviceReady() 
 {
+	 alert("bbb");
 	//navigator.notification.beep(2);
 	
 	/*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
