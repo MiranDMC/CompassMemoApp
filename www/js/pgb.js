@@ -1,4 +1,5 @@
 var gLastPosition;
+var gPhotosDirectoryPath;
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
@@ -15,6 +16,10 @@ function init()
 function onDeviceReady() 
 {
 	//navigator.notification.beep(2);
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+		function(fileSystem) { alert("FS: " + fileSystem; }, 
+		function(event) { alert("ERROR: Failed to request local file system: " + event.target.error.code ); });
 	
 	if (navigator.geolocation)
 	{
@@ -64,17 +69,16 @@ function updateCompass(angle)
 
 function addNewLocation()
 {
+	function photoSuccess(imgData)
+	{
+		
+	}
+	
 	var imgData = ''
 	navigator.camera.getPicture(
-		function(val) { imgData = val; alert('Photo OK'); },
-		function(val) { alert('Failed to get photo: ' + val); }
-	);
-	
-	var lon = 0;
-	var lat = 0;
-	navigator.geolocation.getCurrentPosition(
-		function(val) { lon = val.coords.latitude; val.coords.longitude; alert('Position:' + lon + ", " + lat); },
-		function(val) { alert('Failed to get geolocation: ' + val); }
+		photoSuccess,
+		function(val) { alert('Failed to get photo: ' + val); },
+		{ quality: 75 }
 	);
 }
 
