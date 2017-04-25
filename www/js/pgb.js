@@ -15,12 +15,20 @@ function init()
 
 function onDeviceReady() 
 {
-	 alert("bbb");
 	//navigator.notification.beep(2);
 	
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-		function(fileSystem) { alert("FS: " + fileSystem); }, 
-		function(err) { alert("ERROR: Failed to request local file system: " + err ); });
+		
+	function fileSystemSuccess(fileSys) 
+	{
+		alert(fileSys);
+	}
+	
+	function resOnError(error) 
+	{
+		alert(error.code);
+	}
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, resOnError);
 	
 	if (navigator.geolocation)
 	{
