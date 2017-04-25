@@ -16,20 +16,14 @@ function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 	
-	/*if (navigator.geolocation)
+	if (navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	}
-	else*/
+	else
 	{
-		Ext.device.Geolocation.watchPosition({
-                 frequency: 3000, // Update every 3 seconds
-                 callback: onGpsUpdated,
-                 failure: onGpsFailed,
-                 scope:this
-        });
-		//alert("ERROR: Geolocation is not supported by your device!");
+		alert("ERROR: Geolocation is not supported by your device!");
 	}
 }
 
