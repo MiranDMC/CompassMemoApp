@@ -42,28 +42,25 @@ function updateCompass(angle)
 	height -= $("#navFooter").offsetHeight;
 	height -= 20;
 	
-	$("#canvas").setAttribute( "height", height + "px" );
-	
-	var needle = $("#needle");
-	var text = $("#compassText");
+	$("#canvas").height = height + "px";
 	
 	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
 	{
-		text.style.display = "none"; // hide
-		needle.style.display = "block"; // show
+		$("#compassText").css("display", "none"); // hide
+		$("#needle").css("display", "block"); // show
 		
 		var transform = "";
 		//transform += " translate(" + (width / 2) + ", " + (height / 2) + ")";
 		transform += " rotate(" + angle + ", 0, 0)";
 		//transform += " scale(" + scale + ", " + scale + ")";
 		
-		needle.setAttribute("transform", transform );
+		$("#needle").transform = transform;
 	}
 	else
 	{
-		needle.style.display = "none"; // hide
-		text.style.display = "block"; // show
-		text.textContent = angle;
+		$("#needle").css("display", "none"); // hide
+		$("#compassText").css("display", "block"); // show
+		$("#compassText").textContent = angle;
 	}
 }
 
@@ -72,6 +69,7 @@ function addNewLocation()
 	if(gLastPosition == undefined)
 	{
 		alert("GPS data is required to perform this action.\nPlease try again later.");
+		return;
 	}
 	
 	function photoSuccess(imgData) // save photo to file in app"s directory
