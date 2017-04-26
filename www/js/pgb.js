@@ -138,7 +138,7 @@ function updateLocationsList()
 								var item = document.createElement('li');
 								
 								//var img = document.createElement('img');	
-								item.innerHTML += "<img src=\"" + img + "\">";
+								item.innerHTML += "<img src=\"" + image + "\">";
 								item.innerHTML += "<h2>" + name + "</h2>";
 								
 								list.appendChild(item);
