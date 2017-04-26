@@ -142,6 +142,7 @@ function updateLocationsList()
 							}
 							
 							list.innerHTML= html;
+							$( "#locationsList" ).listview( "refresh" );
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
