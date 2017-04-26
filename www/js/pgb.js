@@ -136,11 +136,15 @@ function updateLocationsList()
 								var name = "Name";
 								
 								var item = document.createElement('li');
-								item.appendChild(document.createTextNode("<img src=\"" + img + "\">"));
-								item.appendChild(document.createTextNode("<h2>" + name + "</h2>"));
+								item.innerHTML += "<img src=\"" + img + "\">";
+								item.innerHTML += "<h2>" + name + "</h2>";
 								
 								list.appendChild(item);
 							}
+							
+							/*list.innerHTML = html;
+							list.style.display = 'none';
+							list.style.display = 'block';*/
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
