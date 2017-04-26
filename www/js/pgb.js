@@ -124,16 +124,15 @@ function updateLocationsList()
 							{
 								var img = entries[i].toURL();
 								var name = "Name";
-								var distance = "640 m";
 								
 								html += "<li>";
 								html += "<img src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
-								html += "<br>" + distance;
 								html += "</li>";
 							}
 							
 							list.innerHTML = html;
+							list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
@@ -150,6 +149,9 @@ function onGpsUpdated(position)
 
 function onGpsFailed(error)
 {
-	updateCompass("Error: Location data not available.");
-	alert("code: " + error.code + "\n message: " + error.message + "\n");
+	if(error.code !== 3) // timeout
+	{
+		updateCompass("Error: Location data not available.");
+		alert("code: " + error.code + "\n message: " + error.message + "\n");
+	}
 }
