@@ -115,7 +115,7 @@ function updateLocationsList()
 	list = document.getElementById("locationsList");
 	
 	// clear list
-	//list.innerHTML = "";
+	list.innerHTML = "";
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -132,24 +132,16 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								var image = entries[i].toURL();
+								var img = entries[i].toURL();
 								var name = "Name";
 								
-								var item = document.createElement("li");
-								
-								var img = document.createElement("img");
-								img.setAttribute("src", image);
-								item.appendChild(img);
-								
-								var txt = document.createTextNode("<h2>" + name + "</h2>");
-								item.appendChild(txt);
-								
-								list.appendChild(item);
+								html += "<li>";
+								html += "<img src=\"" + img + "\">";
+								html += "<h2>" + name + "</h2>";
+								html += "</li>";
 							}
 							
-							/*list.innerHTML = html;
-							list.style.display = 'none';
-							list.style.display = 'block';*/
+							list.update(html);
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
