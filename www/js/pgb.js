@@ -67,6 +67,8 @@ function addNewLocation()
 {
 	function photoSuccess(imgData) // save photo to file in app's directory
 	{
+		alert("photo succes");
+		
 		window.resolveLocalFileSystemURI(imgData,
 			function(entry)
 			{
