@@ -1,5 +1,5 @@
 var gLastPosition;
-var gPhotosDirectoryPath;
+var gPhotosDirectory = "CompassMemoData";
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
@@ -16,20 +16,7 @@ function init()
 function onDeviceReady() 
 {
 	//navigator.notification.beep(2);
-	
 		
-	function fileSystemSuccess(fileSys) 
-	{
-		alert(fileSys);
-	}
-	
-	function resOnError(error) 
-	{
-		alert(error.code);
-	}
-	
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, resOnError);
-	
 	if (navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
@@ -78,15 +65,33 @@ function updateCompass(angle)
 
 function addNewLocation()
 {
-	function photoSuccess(imgData)
+	function photoSuccess(imgData) // save photo to file in app's directory
 	{
-		
+		window.resolveLocalFileSystemURI(imgData,
+			function(entry)
+			{
+				var fileName = "test_01.jpg";
+				
+				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+				function(fileSys) 
+				{
+					fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
+						function(directory) 
+						{
+							entry.moveTo(directory, fileName,  
+								function(entry){},  // succcess, refresh locations list
+								function(err) {alert("ERROR: failed to move picture into target directory. " + error.message);});
+						},
+						function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
+				},
+				function(err) {alert("ERROR: failed to access file system. " + error.message);} );
+			}
+		, function(err) {alert("ERROR: Unable to resolve image location. " + error.code + " " + error.message);} );
 	}
 	
-	var imgData = ''
 	navigator.camera.getPicture(
 		photoSuccess,
-		function(val) { alert('Failed to get photo: ' + val); },
+		function(err) {alert("ERROR: Unable to get picture. " + error.message);},
 		{ quality: 75 }
 	);
 }
