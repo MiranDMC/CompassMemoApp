@@ -13,7 +13,7 @@ function init()
 	updateCompass("Waiting for GPS data...");
 }
 
-function onDeviceReady() 
+function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 		
@@ -69,7 +69,7 @@ function updateCompass(angle)
 
 function addNewLocation()
 {
-	function photoSuccess(imgData) // save photo to file in app's directory
+	function photoSuccess(imgData) // save photo to file in app"s directory
 	{
 		window.resolveLocalFileSystemURI(imgData,
 			function(entry)
@@ -102,6 +102,12 @@ function addNewLocation()
 
 function updateLocationsList()
 {
+	list = document.getElementById("navHeader");
+	
+	// clear list
+	list.html = "";
+	list.listview("refresh");
+	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
 		{
@@ -113,10 +119,15 @@ function updateLocationsList()
 					directoryReader.readEntries(
 						function(entries)
 						{
+							var html = '';
+							
 							for (var i=0; i<entries.length; i++) 
 							{
-								alert("E:" + entries[i].name);
+								html += "<li>" + entries[i].name + "</li>";
 							}
+							
+							list.html = html;
+							list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
@@ -134,5 +145,5 @@ function onGpsUpdated(position)
 function onGpsFailed(error)
 {
 	updateCompass("Error: Location data not available.");
-	alert('code: ' + error.code + '\n message: ' + error.message + '\n');
+	alert("code: " + error.code + "\n message: " + error.message + "\n");
 }
