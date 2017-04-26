@@ -115,7 +115,7 @@ function updateLocationsList()
 	list = document.getElementById("locationsList");
 	
 	// clear list
-	list.innerHTML = "";
+	//list.innerHTML = "";
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -132,10 +132,12 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								var img = entries[i].toURL();
+								var image = entries[i].toURL();
 								var name = "Name";
 								
 								var item = document.createElement('li');
+								
+								//var img = document.createElement('img');	
 								item.innerHTML += "<img src=\"" + img + "\">";
 								item.innerHTML += "<h2>" + name + "</h2>";
 								
