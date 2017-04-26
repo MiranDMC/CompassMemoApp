@@ -11,6 +11,7 @@ function init()
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
+	updateLocationsList();
 }
 
 function onDeviceReady()
@@ -103,13 +104,9 @@ function addNewLocation()
 function updateLocationsList()
 {
 	list = document.getElementById("locationsList");
-	list.empty();
-	list.listview("refresh");
-	/*alert("list " + list);
 	
 	// clear list
-	list.html = "";
-	list.listview("refresh");*/
+	list.innerHTML = "";
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -126,11 +123,11 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								list.append("<li>" + entries[i].name + "</li>");
+								//list.append("<li>" + entries[i].name + "</li>");
 								//html += "<li>" + entries[i].name + "</li>";
 							}
 							
-							//list.html = html;
+							list.innerHTML = html;
 							//list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
