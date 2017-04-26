@@ -136,7 +136,7 @@ function updateLocationsList()
 								var name = "Name";
 								
 								html += "<li>";
-								html += "<img src=\"" + img + "\">";
+								html += "<img height=\"20%\" src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
 								html += "</li>";
 							}
