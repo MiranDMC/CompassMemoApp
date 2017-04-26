@@ -42,8 +42,6 @@ function updateCompass(angle)
 	height -= $("#navFooter").outerHeight();
 	height -= 20;
 	
-	alert(height);
-	
 	$("#canvas").height(height + "px");
 	
 	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
