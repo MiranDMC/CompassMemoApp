@@ -117,6 +117,10 @@ function updateLocationsList()
 	// clear list
 	list.innerHTML = "";
 	
+	list.innerHTML = '<img src="https://jqmtricks.files.wordpress.com/2014/02/after.png"><h2>Broken Bells</h2><p>Broken Bells</p></a>';
+	list.style.display = 'none';
+	list.style.display = 'block';
+	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
 		{
