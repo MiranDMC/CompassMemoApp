@@ -135,15 +135,12 @@ function updateLocationsList()
 								var img = entries[i].toURL();
 								var name = "Name";
 								
-								html += "<li>";
-								html += "<img src=\"" + img + "\">";
-								html += "<h2>" + name + "</h2>";
-								html += "</li>";
+								var item = document.createElement('li');
+								item.appendChild(document.createTextNode("<img src=\"" + img + "\">"));
+								item.appendChild(document.createTextNode("<h2>" + name + "</h2>"));
+								
+								list.appendChild(item);
 							}
-							
-							list.innerHTML = html;
-							list.style.display = 'none';
-							list.style.display = 'block';
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
