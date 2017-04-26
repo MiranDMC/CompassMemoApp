@@ -17,6 +17,7 @@ function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 		
+	// ask for location
 	if (navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
@@ -26,6 +27,9 @@ function onDeviceReady()
 	{
 		alert("ERROR: Geolocation is not supported by your device!");
 	}
+	
+	// load photos from storage
+	updateLocationsList();
 }
 
 function updateCompass(angle)
@@ -94,6 +98,31 @@ function addNewLocation()
 		function(err) {alert("ERROR: Unable to get picture. " + error.message);},
 		{ quality: 75 }
 	);
+}
+
+function updateLocationsList()
+{
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+		function(fileSys) 
+		{
+			fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
+				function(directory) 
+				{
+					var directoryReader = directory.createReader();
+					
+					directoryReader.readEntries(
+						function(entries)
+						{
+							for (var i=0; i<entries.length; i++) 
+							{
+								alert("E:" + entries[i].name);
+							}
+						},
+						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
+				},
+				function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
+		},
+		function(err) {alert("ERROR: failed to access file system. " + error.message);} );
 }
 
 function onGpsUpdated(position)
