@@ -100,6 +100,16 @@ function addNewLocation()
 	);
 }
 
+function navigateToLocation()
+{
+	
+}
+
+function deleteLocation()
+{
+	updateLocationsList();
+}
+
 function updateLocationsList()
 {
 	list = document.getElementById("locationsList");
