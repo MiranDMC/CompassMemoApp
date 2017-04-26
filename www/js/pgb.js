@@ -11,7 +11,6 @@ function init()
 {
 	document.addEventListener("deviceready",onDeviceReady, false);
 	updateCompass("Waiting for GPS data...");
-	updateLocationsList();
 }
 
 function onDeviceReady()
