@@ -79,7 +79,7 @@ function addNewLocation()
 						function(directory) 
 						{
 							entry.moveTo(directory, fileName,  
-								function(entry){ alert("photo succes: " entry.toURL()); },  // succcess, refresh locations list
+								function(entry){ alert("photo succes: " + entry.toURL()); },  // succcess, refresh locations list
 								function(err) {alert("ERROR: failed to move picture into target directory. " + error.message);});
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
