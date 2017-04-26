@@ -136,13 +136,12 @@ function updateLocationsList()
 								var name = "Name";
 								
 								html += "<li>";
-								html += "<img height=\"20%\" src=\"" + img + "\">";
+								html += "<img src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
 								html += "</li>";
 							}
 							
 							list.innerHTML = html;
-							list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
