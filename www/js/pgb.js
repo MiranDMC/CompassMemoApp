@@ -103,11 +103,11 @@ function addNewLocation()
 function updateLocationsList()
 {
 	list = document.getElementById("locationsList");
-	list.empty();
+	alert("list " + list);
 	
 	// clear list
-	//list.html = "";
-	//list.listview("refresh");
+	list.html = "";
+	list.listview("refresh");
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
