@@ -135,11 +135,14 @@ function updateLocationsList()
 								var image = entries[i].toURL();
 								var name = "Name";
 								
-								var item = document.createElement('li');
+								var item = document.createElement("li");
 								
-								//var img = document.createElement('img');	
-								item.innerHTML += "<img src=\"" + image + "\">";
-								item.innerHTML += "<h2>" + name + "</h2>";
+								var img = document.createElement("img");
+								img.setAttribute("src", image);
+								item.appendChild(img);
+								
+								var txt = document.createTextNode("<h2>" + name + "</h2>");
+								item.appendChild(txt);
 								
 								list.appendChild(item);
 							}
