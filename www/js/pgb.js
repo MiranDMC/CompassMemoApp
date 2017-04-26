@@ -123,7 +123,7 @@ function updateLocationsList()
 							for (var i=0; i<entries.length; i++) 
 							{
 								//list.append("<li>" + entries[i].name + "</li>");
-								//html += "<li>" + entries[i].name + "</li>";
+								html += "<li>" + entries[i].name + "</li>";
 							}
 							
 							list.innerHTML = html;
