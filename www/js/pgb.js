@@ -83,7 +83,7 @@ function addNewLocation()
 						function(directory) 
 						{
 							entry.moveTo(directory, fileName,  
-								function(entry){ alert("photo succes: " + entry.toURL()); },  // succcess, refresh locations list
+								function(entry){ updateLocationsList(); },  // succcess, refresh locations list
 								function(err) {alert("ERROR: failed to move picture into target directory. " + error.message);});
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
@@ -122,12 +122,18 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								//list.append("<li>" + entries[i].name + "</li>");
-								html += "<li>" + entries[i].name + "</li>";
+								var img = entries[i].toURL();
+								var name = "Name";
+								var distance = "640 m";
+								
+								html += "<li>";
+								html += "<img src=\"" + img + "\">";
+								html += "<h2>" + name + "</h2>";
+								html += "<br>" + distance;
+								html += "</li>";
 							}
 							
 							list.innerHTML = html;
-							//list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
