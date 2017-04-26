@@ -142,7 +142,7 @@ function updateLocationsList()
 							}
 							
 							list.innerHTML = html;
-							list.listview().trigger("create");
+							list.listview("create");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
