@@ -37,15 +37,15 @@ function updateCompass(angle)
 	var width = window.innerWidth;
 	
 	var height = window.innerHeight;
-	height -= document.getElementById("navHeader").offsetHeight;
-	height -= document.getElementById("navInfo").offsetHeight;
-	height -= document.getElementById("navFooter").offsetHeight;
+	height -= $("#navHeader").offsetHeight;
+	height -= $("#navInfo").offsetHeight;
+	height -= $("#navFooter").offsetHeight;
 	height -= 20;
 	
-	document.getElementById("canvas").setAttribute( "height", height + "px" );
+	$("#canvas").setAttribute( "height", height + "px" );
 	
-	var needle = document.getElementById("needle");
-	var text = document.getElementById("compassText");
+	var needle = $("#needle");
+	var text = $("#compassText");
 	
 	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
 	{
@@ -111,11 +111,9 @@ function deleteLocation()
 }
 
 function updateLocationsList()
-{
-	list = document.getElementById("locationsList");
-	
+{	
 	// clear list
-	list.innerHTML = "";
+	$("#locationsList").innerHTML = "";
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -141,8 +139,8 @@ function updateLocationsList()
 								html += "</li>";
 							}
 							
-							list.innerHTML= html;
-							$( "#locationsList" ).listview( "refresh" );
+							$("#locationsList").innerHTML= html;
+							$("#locationsList").listview( "refresh" );
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
