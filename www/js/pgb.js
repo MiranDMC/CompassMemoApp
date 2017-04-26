@@ -103,11 +103,13 @@ function addNewLocation()
 function updateLocationsList()
 {
 	list = document.getElementById("locationsList");
-	alert("list " + list);
+	list.empty();
+	list.listview("refresh");
+	/*alert("list " + list);
 	
 	// clear list
 	list.html = "";
-	list.listview("refresh");
+	list.listview("refresh");*/
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -124,11 +126,12 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								html += "<li>" + entries[i].name + "</li>";
+								list.append("<li>" + entries[i].name + "</li>");
+								//html += "<li>" + entries[i].name + "</li>";
 							}
 							
-							list.html = html;
-							list.listview("refresh");
+							//list.html = html;
+							//list.listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
