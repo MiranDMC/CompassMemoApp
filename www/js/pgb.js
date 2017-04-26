@@ -69,12 +69,27 @@ function updateCompass(angle)
 
 function addNewLocation()
 {
+	if(gLastPosition == undefined)
+	{
+		alert("GPS data is required to perform this action.\nPlease try again later.");
+	}
+	
 	function photoSuccess(imgData) // save photo to file in app"s directory
 	{
+		var description = prompt("Please enter location name", "");
+		
+		if (description == null || description == "")
+		{
+			return;
+		}
+		
 		window.resolveLocalFileSystemURI(imgData,
 			function(entry)
 			{
-				var fileName = "test_01.jpg";
+				var fileName = "";
+				fileName += gLastPosition.coords.latitude + "_" + gLastPosition.coords.longitude;
+				fileName += "_" + description;
+				fileName += ".jpg";
 				
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 				function(fileSys) 
@@ -130,8 +145,28 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
+								// filename format : lon_lat_description.jpg
+								var filename = entries[i].name;
+								
+								if(filename.slice(-3) != ".jpg")
+								{
+									continue; // not jpg file
+								}
+								
+								filename = filename.substr(0, filename.length-3); // remove extension
+								var filenameParts = mainStr.split("_");
+								
+								if( (filenameParts.length - 1) < 2)
+								{
+									continue; // not enough of '_' characters
+								}
+								
+								var lat = filenameParts[0];
+								var lon = filenameParts[1];
+								var name = filenameParts[2];
 								var img = entries[i].toURL();
-								var name = "Name";
+								
+								var name = filename;
 								
 								html += "<li>";
 								html += "<img width=\"20%\" src=\"" + img + "\">";
@@ -157,7 +192,7 @@ function onGpsUpdated(position)
 
 function onGpsFailed(error)
 {
-	if(error.code !== 3) // timeout
+	if(error.code !== 3) // not timeout
 	{
 		updateCompass("Error: Location data not available.");
 		alert("code: " + error.code + "\n message: " + error.message + "\n");
