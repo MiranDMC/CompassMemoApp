@@ -37,30 +37,26 @@ function updateCompass(angle)
 	var width = window.innerWidth;
 	
 	var height = window.innerHeight;
-	height -= $("#navHeader").offsetHeight;
-	height -= $("#navInfo").offsetHeight;
-	height -= $("#navFooter").offsetHeight;
+	height -= $("#navHeader").outerHeight();
+	height -= $("#navInfo").outerHeight();
+	height -= $("#navFooter").outerHeight();
 	height -= 20;
 	
-	$("#canvas").height = height + "px";
+	alert(height);
+	
+	$("#canvas").height(height + "px");
 	
 	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
 	{
 		$("#compassText").css("display", "none"); // hide
-		$("#needle").css("display", "block"); // show
-		
-		var transform = "";
-		//transform += " translate(" + (width / 2) + ", " + (height / 2) + ")";
-		transform += " rotate(" + angle + ", 0, 0)";
-		//transform += " scale(" + scale + ", " + scale + ")";
-		
-		$("#needle").transform = transform;
+		$("#needle").css("display", "block"); // show		
+		$("#needle").transform("rotate(" + angle + ", 0, 0)");
 	}
 	else
 	{
 		$("#needle").css("display", "none"); // hide
 		$("#compassText").css("display", "block"); // show
-		$("#compassText").textContent = angle;
+		$("#compassText").text(angle);
 	}
 }
 
