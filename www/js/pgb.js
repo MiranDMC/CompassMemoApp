@@ -102,7 +102,7 @@ function addNewLocation()
 
 function updateLocationsList()
 {
-	list = document.getElementById("navHeader");
+	list = document.getElementById("locationsList");
 	
 	// clear list
 	list.html = "";
