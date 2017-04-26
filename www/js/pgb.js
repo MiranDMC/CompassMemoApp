@@ -141,7 +141,7 @@ function updateLocationsList()
 								html += "</li>";
 							}
 							
-							list.update(html);
+							list.innerHTML= html;
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
