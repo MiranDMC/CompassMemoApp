@@ -140,7 +140,7 @@ function updateLocationsList()
 								// filename format : lon_lat_description.jpg
 								var filename = entries[i].name;
 								
-								if(filename.slice(-3) != ".jpg")
+								/*if(filename.slice(-3) != ".jpg")
 								{
 									continue; // not jpg file
 								}
@@ -155,7 +155,7 @@ function updateLocationsList()
 								
 								var lat = filenameParts[0];
 								var lon = filenameParts[1];
-								var name = filenameParts[2];
+								var name = filenameParts[2];*/
 								var img = entries[i].toURL();
 								
 								var name = filename;
