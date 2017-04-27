@@ -146,8 +146,6 @@ function updateLocationsList()
 								{
 									continue; // not jpg file
 								}
-								
-								alert("k");
 																
 								filename = filename.substring(0, filename.length-4); // remove extension
 								var filenameParts = mainStr.split("_");
