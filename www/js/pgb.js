@@ -1,6 +1,9 @@
 var gLastPosition;
 var gPhotosDirectory = "CompassMemoData";
 
+var gTargetLon;
+var gTargetLat;
+
 var gGeoOptions = {
   enableHighAccuracy: true, 
   maximumAge : 30000, 
@@ -164,7 +167,7 @@ function updateLocationsList()
 								html += "</li>";
 							}
 							
-							$("#locationsList").html((html);
+							$("#locationsList").html(html);
 							$("#locationsList").listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
