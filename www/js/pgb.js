@@ -120,7 +120,7 @@ function deleteLocation()
 function updateLocationsList()
 {	
 	// clear list
-	$("#locationsList").innerHTML = "";
+	$("#locationsList").innerHTML("");
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -167,8 +167,8 @@ function updateLocationsList()
 								html += "</li>";
 							}
 							
-							$("#locationsList").innerHTML= html;
-							$("#locationsList").listview( "refresh" );
+							$("#locationsList").innerHTML(html);
+							$("#locationsList").listview("refresh");
 						},
 						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
 				},
