@@ -139,20 +139,15 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
-								alert(entries[i].name);
 								// filename format : lon_lat_description.jpg
 								var filename = entries[i].name;
 								
-								alert(filename.slice(-3));
-								
-								if(filename.slice(-3) != ".jpg")
+								if(filename.slice(-4) != ".jpg")
 								{
 									continue; // not jpg file
 								}
-								
-								alert("ext: " + filename);
-								
-								filename = filename.substr(0, filename.length-3); // remove extension
+																
+								filename = filename.substr(0, filename.length-4); // remove extension
 								var filenameParts = mainStr.split("_");
 								
 								alert("parts: " + filenameParts.length);
