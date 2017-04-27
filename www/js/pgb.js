@@ -142,12 +142,12 @@ function updateLocationsList()
 								// filename format : lon_lat_description.jpg
 								var filename = entries[i].name;
 								
-								alert(filename.slice(-4));
-								
-								if(filename.slice(-4) != ".jpg")
+								if(!filename.endswith(".jpg"))
 								{
 									continue; // not jpg file
 								}
+								
+								alert("k");
 																
 								filename = filename.substr(0, filename.length-4); // remove extension
 								var filenameParts = mainStr.split("_");
