@@ -148,8 +148,12 @@ function updateLocationsList()
 									continue; // not jpg file
 								}
 								
+								alert("ext: " + filename);
+								
 								filename = filename.substr(0, filename.length-3); // remove extension
 								var filenameParts = mainStr.split("_");
+								
+								alert("parts: " + filenameParts.length);
 								
 								if( (filenameParts.length - 1) < 2)
 								{
@@ -165,6 +169,8 @@ function updateLocationsList()
 								html += "<img width=\"20%\" src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
 								html += "</li>";
+								
+								alert("added");
 							}
 							
 							$("#locationsList").html(html);
