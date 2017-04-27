@@ -139,8 +139,10 @@ function updateLocationsList()
 							
 							for (var i=0; i<entries.length; i++) 
 							{
+								alert(entries[i].name);
 								// filename format : lon_lat_description.jpg
 								var filename = entries[i].name;
+								alert(filename);
 								
 								alert(filename.endswith(".jpg"));
 								
