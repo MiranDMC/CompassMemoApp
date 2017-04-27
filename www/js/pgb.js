@@ -149,7 +149,7 @@ function updateLocationsList()
 								
 								alert("k");
 																
-								filename = filename.subStr(0, filename.length-4); // remove extension
+								filename = filename.substring(0, filename.length-4); // remove extension
 								var filenameParts = mainStr.split("_");
 								
 								alert("parts: " + filenameParts.length);
