@@ -112,7 +112,7 @@ function addNewLocation()
 
 function navigateToLocation()
 {
-	window.location = "navigate.html";
+	$.mobile.changePage("#navigate");
 }
 
 function deleteLocation()
@@ -171,10 +171,10 @@ function updateLocationsList()
 								var name = filenameParts[2];
 								var img = entries[i].toURL();
 								
-								html += "<li>";
+								html += "<li data-icon=\"false\"><a href=\"#\">";						
 								html += "<img width=\"20%\" src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
-								html += "</li>";
+								html += "</a></li>";
 							}
 							
 							$("#locationsList").html(html);
