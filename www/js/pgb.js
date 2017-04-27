@@ -106,18 +106,29 @@ function addNewLocation()
 	navigator.camera.getPicture(
 		photoSuccess,
 		function(err) {alert("ERROR: Unable to get picture. " + error.message);},
-		{ quality: 75 }
+		{ quality: 70, targetWidth: 25, targetHeight: 25 }
 	);
 }
 
 function navigateToLocation()
 {
-	
+	window.location = "navigate.html";
 }
 
 function deleteLocation()
 {
-	updateLocationsList();
+	var filename = "?";
+	
+	window.resolveLocalFileSystemURL(filename, 
+		function(file) 
+		{
+			file.remove(function()
+			{
+				updateLocationsList();
+			},
+			function(err) {alert("ERROR: failed remove file. " + error.message);});
+      }, 
+	  function(err) {alert("ERROR: failed to resolve file location. " + error.message);});
 }
 
 function updateLocationsList()
