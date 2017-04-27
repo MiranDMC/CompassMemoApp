@@ -151,8 +151,6 @@ function updateLocationsList()
 								alert(filename);
 								var filenameParts = filename.split("_");
 								
-								alert("parts: " + filenameParts.length);
-								
 								if( (filenameParts.length - 1) < 2)
 								{
 									continue; // not enough of '_' characters
@@ -167,8 +165,6 @@ function updateLocationsList()
 								html += "<img width=\"20%\" src=\"" + img + "\">";
 								html += "<h2>" + name + "</h2>";
 								html += "</li>";
-								
-								alert("added");
 							}
 							
 							$("#locationsList").html(html);
