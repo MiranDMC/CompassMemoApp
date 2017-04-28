@@ -15,6 +15,6 @@
 	<plugin name="cordova-plugin-dialogs" spec="*" />
 	<plugin name="cordova-plugin-camera" spec="*"/>
 	<plugin name="cordova-plugin-geolocation" spec="*"/>
-	<plugin name="cordova-plugin-file" spec="*"/>
+	<plugin name="cordova-plugin-file" spec="2.4.0"/>
 
 	</widget>
