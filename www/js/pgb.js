@@ -143,20 +143,25 @@ function deleteLocation()
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 			function(fileSys) 
 			{
+				alert("a");
 				fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
 					function(directory) 
 					{
-						directory.getFile(gListCurrFile,
+						alert("b");
+						directory.getFile(gListCurrFile, {create: false, exclusive: false},
 							function(file) 
 							{
+								alert("c");
 								file.remove(
 									function()
 									{
+										alert("d");
 										updateLocationsList();
 									},
 									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
 								);
-							}
+							},
+							function(err) {alert('ERROR: failed to get file. ' + error.message);}
 						);
 					}, 
 					function(err) {alert('ERROR: failed to get output directory. ' + error.message);} 
