@@ -187,6 +187,7 @@ function updateLocationsList()
 								var onClick = `
 									{
 										alert('click');
+
 									}
 								`;
 								
@@ -201,12 +202,11 @@ function updateLocationsList()
 								html += ' data-custom-lat="' + lat + '"';
 								html += ' data-custom-file="' + filename + '"';
 								html += ' data-img="' + img + '"';
+								html += 'onclick="' + onClick + '"';
 								html += '><a href="#">';						
 								html += '<img width="20%" src="' + img + '">';
 								html += '<h2>' + name + '</h2>';
-								html += '</a>';
-								html += 'onclick="' + onClick + '"';
-								html += '</li>';
+								html += '</a></li>';
 							}
 							
 							// assign item click event
