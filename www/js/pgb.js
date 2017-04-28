@@ -295,23 +295,20 @@ function onGpsUpdated(position)
 	
 	if(gListCurrName)
 	{
-		alert('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
-		  
 		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
-	
 		$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
 		
-		var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 		var angleHeading = position.coords.heading;
 		
-		updateCompass(angleHeading);
+		if(angleHeading)
+		{
+			var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+			updateCompass(angleToTarget - angleHeading);
+		}
+		else
+		{
+			updateCompass('Please start walking');
+		}
 	}
 	else
 	{
