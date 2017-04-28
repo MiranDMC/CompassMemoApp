@@ -16,6 +16,13 @@ var gGeoOptions = {
   timeout : 60
 };
 
+// Check if HTML5 location support exists
+app.geolocation = false;
+if(navigator.geolocation)
+{
+	app.geolocation = navigator.geolocation;
+}
+
 if (typeof(Number.prototype.toRad) === "undefined")
 {
 	Number.prototype.toRad = function() 
@@ -71,12 +78,22 @@ function init()
 function onDeviceReady()
 {
 	//navigator.notification.beep(2);
+	
+	var locationService;
+	if(app.geolocation)
+	{
+		locationService = app.geolocation; // native HTML5 geolocation
+	}
+	else 
+	{
+		locationService = navigator.geolocation; // cordova geolocation plugin
+	}
 		
 	// ask for location
-	if (navigator.geolocation)
+	if (locationService)
 	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		locationService.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		locationService.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	}
 	else
 	{
