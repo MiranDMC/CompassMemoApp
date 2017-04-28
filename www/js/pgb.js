@@ -165,6 +165,8 @@ function addNewLocation()
 
 function navigateToLocation()
 {
+	onDeviceReady(); // debug
+	
 	if(!gListCurrName)
 	{
 		alert("Please select location!");
