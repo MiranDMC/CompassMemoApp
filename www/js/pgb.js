@@ -186,8 +186,11 @@ function updateLocationsList()
 								
 								var onClick = `
 									{
-										alert('click');
-
+										gListCurrName = $(this).attr('data-custom-name');
+										gListCurrFile = $(this).attr('data-custom-file');
+										gListCurrImg = $(this).attr('data-img');
+										gListCurrLon = $(this).attr('data-custom-lon');
+										gListCurrLat = $(this).attr('data-custom-lat');
 									}
 								`;
 								
