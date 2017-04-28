@@ -184,6 +184,12 @@ function updateLocationsList()
 									continue; // not enough of '_' characters
 								}
 								
+								var onClick = `
+									{
+										alert('click');
+									}
+								`;
+								
 								var lat = filenameParts[0];
 								var lon = filenameParts[1];
 								var name = filenameParts[2];
@@ -198,11 +204,13 @@ function updateLocationsList()
 								html += '><a href="#">';						
 								html += '<img width="20%" src="' + img + '">';
 								html += '<h2>' + name + '</h2>';
-								html += '</a></li>';
+								html += '</a>';
+								html += 'onclick="' + onClick + '"';
+								html += '</li>';
 							}
 							
 							// assign item click event
-							$('#locationsList ul').children('li').children('a').bind('touchstart mousedown', 
+							/*$('#locationsList ul').children('li').children('a').bind('touchstart mousedown', 
 								function(e) 
 								{
 									alert("click");
@@ -212,7 +220,7 @@ function updateLocationsList()
 									gListCurrLon = $(this).attr('data-custom-lon');
 									gListCurrLat = $(this).attr('data-custom-lat');
 									alert(gListCurrName);
-								});
+								});*/
 							
 							$('#locationsList').html(html);
 							$('#locationsList').listview('refresh');
