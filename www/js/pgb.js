@@ -52,30 +52,14 @@ function geoAngleFromCoordinate(lon1, lat1, lon2, lat2)
 	lon2 = lon2.toRad();
 	lat2 = lat2.toRad();
 	
-	alert(lon1 + ' ' + lat1 + ' ' + lon2 + ' ' + lat2);
-	
     var dLon = (lon2 - lon1);
-	alert(dLon);
-
     var y = Math.sin(dLon) * Math.cos(lat2);
     var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
 	
-	alert(y,x);
-
     var brng = Math.atan2(y, x);
-	
-	alert(brng);
-
     brng = brng.toDeeg();
-	
-	alert(brng);
-	
     brng = (brng + 360.0) % 360.0;
-	
-	alert(brng);
-	
     brng = 360.0 - brng; // count degrees counter-clockwise - remove to make clockwise
-
     return brng;
 }
 
@@ -119,8 +103,8 @@ function updateCompass(angle)
 	if(typeof angle == 'number' || (typeof angle == 'object' && angle.constructor === Number))
 	{
 		$('#compassText').css('display', 'none'); // hide
-		$('#needle').css('display', 'block'); // show		
-		$('#needle').transform('rotate(' + angle + ', 0, 0)');
+		$('#needle').css('display', 'block'); // show
+		$('#needle').attr('transform', 'rotate(' + angle + ', 0, 0)');
 	}
 	else
 	{
