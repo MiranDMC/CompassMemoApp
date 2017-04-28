@@ -16,5 +16,6 @@
 	<plugin name="cordova-plugin-camera" spec="*"/>
 	<plugin name="cordova-plugin-geolocation" spec="*"/>
 	<plugin name="cordova-plugin-file" spec="*"/>
+	<plugin name="cordova-plugin-whitelist" spec="*"/>
 
 </widget>
