@@ -117,9 +117,10 @@ function addNewLocation()
 
 function navigateToLocation()
 {
-	if(!gListCurrFile)
+	if(!gListCurrName)
 	{
 		alert("Please select location!");
+		return;
 	}
 	
 	$("#navInfoImg").attr("src", gListCurrImg);
@@ -130,9 +131,10 @@ function navigateToLocation()
 
 function deleteLocation()
 {
-	if(!gListCurrFile)
+	if(!gListCurrName)
 	{
 		alert("Please select location!");
+		return;
 	}
 	
 	window.resolveLocalFileSystemURL(gListCurrFile,
