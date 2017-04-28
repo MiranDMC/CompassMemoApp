@@ -59,7 +59,6 @@ function geoAngleFromCoordinate(lon1, lat1, lon2, lat2)
     var brng = Math.atan2(y, x);
     brng = brng.toDeeg();
     brng = (brng + 360.0) % 360.0;
-    //brng = 360.0 - brng; // count degrees counter-clockwise - remove to make clockwise
     return brng;
 }
 
