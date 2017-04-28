@@ -34,19 +34,24 @@ if (typeof(Number.prototype.toDeeg) === "undefined")
 
 function geoDistance(lon1, lat1, lon2, lat2) 
 {
-	var R = 6371; // Radius of the earth in km
+	var R = 6371.0; // Radius of the earth in km
 	var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
 	var dLon = (lon2-lon1).toRad(); 
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
 		  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
 		  Math.sin(dLon/2) * Math.sin(dLon/2); 
-	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1.0-a)); 
 	var d = R * c; // Distance in km
 	return d;
 }
 
 function geoAngleFromCoordinate(lon1, lat1, lon2, lat2) 
 {
+	lon1 = lon1.toRad();
+	lat1 = lat1.toRad();
+	lon2 = lon2.toRad();
+	lat2 = lat2.toRad();
+	
     var dLon = (lon2 - lon1);
 
     var y = Math.sin(dLon) * Math.cos(lat2);
