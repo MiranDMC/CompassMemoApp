@@ -138,16 +138,33 @@ function deleteLocation()
 		return;
 	}
 	
-	window.resolveLocalFileSystemURL(gListCurrFile,
-		function(file) 
-		{
-			file.remove(function()
+	if (confirm('Do you want to delete "' + gListCurrName + '" location?'))
+	{
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+			function(fileSys) 
 			{
-				updateLocationsList();
+				fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
+					function(directory) 
+					{
+						directory.getFile(gListCurrFile,
+							function(file) 
+							{
+								file.remove(
+									function()
+									{
+										updateLocationsList();
+									},
+									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
+								);
+							}
+						);
+					}, 
+					function(err) {alert('ERROR: failed to get output directory. ' + error.message);} 
+				);
 			},
-			function(err) {alert('ERROR: failed remove file. ' + error.message);});
-      }, 
-	  function(err) {alert('ERROR: failed to resolve file location. ' + error.message);});
+			function(err) {alert('ERROR: failed to access file system. ' + error.message);}
+		);
+	}
 }
 
 function updateLocationsList()
