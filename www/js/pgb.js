@@ -86,6 +86,7 @@ function onDeviceReady()
 	// load photos from storage
 	updateLocationsList();
 }
+document.addEventListener("deviceready", onDeviceReady, false); // add listener my self to be double sure
 
 function updateCompass(angle)
 {	
