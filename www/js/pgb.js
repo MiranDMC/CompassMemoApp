@@ -143,19 +143,15 @@ function deleteLocation()
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 			function(fileSys) 
 			{
-				alert("a");
 				fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
 					function(directory) 
 					{
-						alert("b " + gListCurrFile);
 						directory.getFile(gListCurrFile, {create: false, exclusive: false},
 							function(file) 
 							{
-								alert("c");
 								file.remove(
 									function(entry)
 									{
-										alert("d");
 										updateLocationsList();
 									},
 									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
