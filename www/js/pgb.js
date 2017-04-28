@@ -301,6 +301,9 @@ function onGpsUpdated(position)
 		$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
 		
 		var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+		
+		alert(position.coords.heading);
+		
 		var angleHeading = position.coords.heading;
 		
 		updateCompass(angleHeading);
