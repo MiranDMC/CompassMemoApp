@@ -271,9 +271,15 @@ function onGpsUpdated(position)
 	
 	if(gListCurrName)
 	{
-		var dist = geoDistance(position.coords.latitude, position.coords.longitude, gTargetLon, gTargetLat);
+		alert(position.coords.longitude + ' ' + position.coords.latitude + ' ' + gTargetLon + ' ' + gTargetLat);
+
+		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 		
-		$('#distance').text('Distance: ' + math.round(dist) + 'm');
+		alert(dist);
+		
+		$('#distance').text('Distance: ' + math.round(100.0 * dist) + 'm');
+		
+		updateCompass(12);
 	}
 	else
 	{
