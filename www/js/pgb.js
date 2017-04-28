@@ -152,14 +152,14 @@ function deleteLocation()
 							function(file) 
 							{
 								alert("c");
-								/*file.remove(
-									function()
+								file.remove(
+									function(entry)
 									{
 										alert("d");
 										updateLocationsList();
 									},
 									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
-								);*/
+								);
 							},
 							function(err) {alert('ERROR: failed to get file. ' + error.message);}
 						);
