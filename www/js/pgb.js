@@ -202,9 +202,10 @@ function updateLocationsList()
 							}
 							
 							// assign item click event
-							$('#locationsList ul').children('li').bind('touchstart mousedown', 
+							$('#locationsList ul').children('li').children('a').bind('touchstart mousedown', 
 								function(e) 
 								{
+									alert("click");
 									gListCurrName = $(this).attr('data-custom-name');
 									gListCurrFile = $(this).attr('data-custom-file');
 									gListCurrImg = $(this).attr('data-img');
