@@ -1,6 +1,7 @@
 var gLastPosition;
 var gPhotosDirectory = 'CompassMemoData';
 
+var gListCurrName;
 var gListCurrFile;
 var gListCurrImg;
 var gListCurrLon;
