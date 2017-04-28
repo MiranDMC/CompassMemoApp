@@ -16,6 +16,22 @@ var gGeoOptions = {
   timeout : 27000
 };
 
+if (typeof(Number.prototype.toRad) === "undefined")
+{
+	Number.prototype.toRad = function() 
+	{
+		return this * Math.PI / 180.0;
+	}
+}
+
+if (typeof(Number.prototype.toDeeg) === "undefined")
+{
+	Number.prototype.toDeeg = function() 
+	{
+		return this * 180.0 / Math.PI;
+	}
+}
+
 function geoDistance(lon1, lat1, lon2, lat2) 
 {
 	var R = 6371; // Radius of the earth in km
@@ -29,23 +45,7 @@ function geoDistance(lon1, lat1, lon2, lat2)
 	return d;
 }
 
-if (typeof(Number.prototype.toRad) === "undefined")
-{
-	Number.prototype.toRad = function() 
-	{
-		return this * Math.PI / 180;
-	}
-}
-
-if (typeof(Number.prototype.toDeeg) === "undefined")
-{
-	Number.prototype.toDeeg = function() 
-	{
-		return this * 180 / Math.PI;
-	}
-}
-
-function geoAngleFromCoordinate(lat1, lon1, lat2, lon2) 
+function geoAngleFromCoordinate(lon1, lat1, lon2, lat2) 
 {
     var dLon = (lon2 - lon1);
 
@@ -56,8 +56,8 @@ function geoAngleFromCoordinate(lat1, lon1, lat2, lon2)
     var brng = Math.atan2(y, x);
 
     brng = brng.toDeeg();
-    brng = (brng + 360) % 360;
-    brng = 360 - brng; // count degrees counter-clockwise - remove to make clockwise
+    brng = (brng + 360.0) % 360.0;
+    brng = 360.0 - brng; // count degrees counter-clockwise - remove to make clockwise
 
     return brng;
 }
@@ -297,7 +297,7 @@ function onGpsUpdated(position)
 	{
 		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 	
-		$('#distance').text('Distance: ' + Math.round(100.0 * dist) + 'm');
+		$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
 		
 		var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 		
