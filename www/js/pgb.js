@@ -29,13 +29,37 @@ function geoDistance(lon1, lat1, lon2, lat2)
 	return d;
 }
 
-/** Converts numeric degrees to radians */
 if (typeof(Number.prototype.toRad) === "undefined")
 {
 	Number.prototype.toRad = function() 
 	{
 		return this * Math.PI / 180;
 	}
+}
+
+if (typeof(Number.prototype.toDeeg) === "undefined")
+{
+	Number.prototype.toDeeg = function() 
+	{
+		return this * 180 / Math.PI;
+	}
+}
+
+function geoAngleFromCoordinate(lat1, lon1, lat2, lon2) 
+{
+    var dLon = (lon2 - lon1);
+
+    var y = Math.sin(dLon) * Math.cos(lat2);
+    var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1)
+            * Math.cos(lat2) * Math.cos(dLon);
+
+    var brng = Math.atan2(y, x);
+
+    brng = brng.toDeeg();
+    brng = (brng + 360) % 360;
+    brng = 360 - brng; // count degrees counter-clockwise - remove to make clockwise
+
+    return brng;
 }
 
 function init() 
@@ -271,15 +295,13 @@ function onGpsUpdated(position)
 	
 	if(gListCurrName)
 	{
-		alert(position.coords.longitude + ' ' + position.coords.latitude + ' ' + gTargetLon + ' ' + gTargetLat);
-
 		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+	
+		$('#distance').text('Distance: ' + Math.round(100.0 * dist) + 'm');
 		
-		alert(dist);
+		var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 		
-		$('#distance').text('Distance: ' + math.round(100.0 * dist) + 'm');
-		
-		updateCompass(12);
+		updateCompass(angleToTarget);
 	}
 	else
 	{
