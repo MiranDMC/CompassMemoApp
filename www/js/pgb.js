@@ -1,5 +1,10 @@
 var gLastPosition;
-var gPhotosDirectory = "CompassMemoData";
+var gPhotosDirectory = 'CompassMemoData';
+
+var gListCurrFile;
+var gListCurrImg;
+var gListCurrLon;
+var gListCurrLat;
 
 var gTargetLon;
 var gTargetLat;
@@ -12,8 +17,8 @@ var gGeoOptions = {
 
 function init() 
 {
-	document.addEventListener("deviceready",onDeviceReady, false);
-	updateCompass("Waiting for GPS data...");
+	document.addEventListener('deviceready',onDeviceReady, false);
+	updateCompass('Waiting for GPS data...');
 }
 
 function onDeviceReady()
@@ -28,7 +33,7 @@ function onDeviceReady()
 	}
 	else
 	{
-		alert("ERROR: Geolocation is not supported by your device!");
+		alert('ERROR: Geolocation is not supported by your device!');
 	}
 	
 	// load photos from storage
@@ -40,24 +45,24 @@ function updateCompass(angle)
 	var width = window.innerWidth;
 	
 	var height = window.innerHeight;
-	height -= $("#navHeader").outerHeight();
-	height -= $("#navInfo").outerHeight();
-	height -= $("#navFooter").outerHeight();
+	height -= $('#navHeader').outerHeight();
+	height -= $('#navInfo').outerHeight();
+	height -= $('#navFooter').outerHeight();
 	height -= 20;
 	
-	$("#canvas").height(height + "px");
+	$('#canvas').height(height + 'px');
 	
-	if(typeof angle == "number" || (typeof angle == "object" && angle.constructor === Number))
+	if(typeof angle == 'number' || (typeof angle == 'object' && angle.constructor === Number))
 	{
-		$("#compassText").css("display", "none"); // hide
-		$("#needle").css("display", "block"); // show		
-		$("#needle").transform("rotate(" + angle + ", 0, 0)");
+		$('#compassText').css('display', 'none'); // hide
+		$('#needle').css('display', 'block'); // show		
+		$('#needle').transform('rotate(' + angle + ', 0, 0)');
 	}
 	else
 	{
-		$("#needle").css("display", "none"); // hide
-		$("#compassText").css("display", "block"); // show
-		$("#compassText").text(angle);
+		$('#needle').css('display', 'none'); // hide
+		$('#compassText').css('display', 'block'); // show
+		$('#compassText').text(angle);
 	}
 }
 
@@ -65,15 +70,15 @@ function addNewLocation()
 {
 	if(gLastPosition == undefined)
 	{
-		alert("GPS data is required to perform this action.\nPlease try again later.");
+		alert('GPS data is required to perform this action.\nPlease try again later.');
 		return;
 	}
 	
-	function photoSuccess(imgData) // save photo to file in app"s directory
+	function photoSuccess(imgData) // save photo to file in app's directory
 	{
-		var description = prompt("Please enter location name", "");
+		var description = prompt('Please enter location name', '');
 		
-		if (description == null || description == "")
+		if (description == null || description == '')
 		{
 			return;
 		}
@@ -81,10 +86,10 @@ function addNewLocation()
 		window.resolveLocalFileSystemURI(imgData,
 			function(entry)
 			{
-				var fileName = "";
-				fileName += gLastPosition.coords.latitude + "_" + gLastPosition.coords.longitude;
-				fileName += "_" + description;
-				fileName += ".jpg";
+				var fileName = '';
+				fileName += gLastPosition.coords.latitude + '_' + gLastPosition.coords.longitude;
+				fileName += '_' + description;
+				fileName += '.jpg';
 				
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 				function(fileSys) 
@@ -94,46 +99,57 @@ function addNewLocation()
 						{
 							entry.moveTo(directory, fileName,  
 								function(entry){ updateLocationsList(); },  // succcess, refresh locations list
-								function(err) {alert("ERROR: failed to move picture into target directory. " + error.message);});
+								function(err) {alert('ERROR: failed to move picture into target directory. ' + error.message);});
 						},
-						function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
+						function(err) {alert('ERROR: failed to get output directory. ' + error.message);} );
 				},
-				function(err) {alert("ERROR: failed to access file system. " + error.message);} );
+				function(err) {alert('ERROR: failed to access file system. ' + error.message);} );
 			}
-		, function(err) {alert("ERROR: Unable to resolve image location. " + error.code + " " + error.message);} );
+		, function(err) {alert('ERROR: Unable to resolve image location. ' + error.code + ' ' + error.message);} );
 	}
 	
 	navigator.camera.getPicture(
 		photoSuccess,
-		function(err) {alert("ERROR: Unable to get picture. " + error.message);},
+		function(err) {alert('ERROR: Unable to get picture. ' + error.message);},
 		{ quality: 70, targetWidth: 25, targetHeight: 25 }
 	);
 }
 
 function navigateToLocation()
 {
-	$.mobile.changePage("#navigate");
+	if(!gListCurrFile)
+	{
+		alert("Please select location!");
+	}
+	
+	$("#navInfoImg").attr("src", gListCurrImg);
+	$("#navInfoName").attr("src", gListCurrName);
+	
+	$.mobile.changePage('#navigate');
 }
 
 function deleteLocation()
 {
-	var filename = "?";
+	if(!gListCurrFile)
+	{
+		alert("Please select location!");
+	}
 	
-	window.resolveLocalFileSystemURL(filename, 
+	window.resolveLocalFileSystemURL(gListCurrFile,
 		function(file) 
 		{
 			file.remove(function()
 			{
 				updateLocationsList();
 			},
-			function(err) {alert("ERROR: failed remove file. " + error.message);});
+			function(err) {alert('ERROR: failed remove file. ' + error.message);});
       }, 
-	  function(err) {alert("ERROR: failed to resolve file location. " + error.message);});
+	  function(err) {alert('ERROR: failed to resolve file location. ' + error.message);});
 }
 
 function updateLocationsList()
 {	
-	$("#locationsList").html(""); // clear list
+	$('#locationsList').html(''); // clear list
 	
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
 		function(fileSys) 
@@ -153,13 +169,12 @@ function updateLocationsList()
 								// filename format : lon_lat_description.jpg
 								var filename = entries[i].name;
 
-								if(!filename.endsWith(".jpg"))
+								if(!filename.endsWith('.jpg'))
 								{
 									continue; // not jpg file
 								}
 																
-								filename = filename.substring(0, filename.length-4); // remove extension
-								var filenameParts = filename.split("_");
+								var filenameParts = filename.substring(0, filename.length-4).split('_'); // remove extension, split
 								
 								if( (filenameParts.length - 1) < 2)
 								{
@@ -171,25 +186,43 @@ function updateLocationsList()
 								var name = filenameParts[2];
 								var img = entries[i].toURL();
 								
-								html += "<li data-icon=\"false\"><a href=\"#\">";						
-								html += "<img width=\"20%\" src=\"" + img + "\">";
-								html += "<h2>" + name + "</h2>";
-								html += "</a></li>";
+								html += '<li data-icon="false"'
+								html += ' data-custom-name="' + name + '"';
+								html += ' data-custom-lon="' + lon + '"';
+								html += ' data-custom-lat="' + lat + '"';
+								html += ' data-custom-file="' + filename + '"';
+								html += ' data-img="' + img + '"';
+								html += '><a href="#">';						
+								html += '<img width="20%" src="' + img + '">';
+								html += '<h2>' + name + '</h2>';
+								html += '</a></li>';
 							}
 							
-							$("#locationsList").html(html);
-							$("#locationsList").listview("refresh");
+							// assign item click event
+							$('#locationsList').children('li').bind('touchstart mousedown', 
+								function(e) 
+								{
+									gListCurrName = $(this).attr('data-custom-name');
+									gListCurrFile = $(this).attr('data-custom-file');
+									gListCurrImg = $(this).attr('data-img');
+									gListCurrLon = $(this).attr('data-custom-lon');
+									gListCurrLat = $(this).attr('data-custom-lat');
+									alert(gListCurrName);
+								});
+							
+							$('#locationsList').html(html);
+							$('#locationsList').listview('refresh');
 						},
-						function(err) {alert("ERROR: failed to get output directory. " + error.message);});
+						function(err) {alert('ERROR: failed to get output directory. ' + error.message);});
 				},
-				function(err) {alert("ERROR: failed to get output directory. " + error.message);} );
+				function(err) {alert('ERROR: failed to get output directory. ' + error.message);} );
 		},
-		function(err) {alert("ERROR: failed to access file system. " + error.message);} );
+		function(err) {alert('ERROR: failed to access file system. ' + error.message);} );
 }
 
 function onGpsUpdated(position)
 {
-	updateCompass("GPS data recived!");
+	updateCompass('GPS data recived!');
 	gLastPosition = position;
 }
 
@@ -197,7 +230,7 @@ function onGpsFailed(error)
 {
 	if(error.code !== 3) // not timeout
 	{
-		updateCompass("Error: Location data not available.");
-		alert("code: " + error.code + "\n message: " + error.message + "\n");
+		updateCompass('Error: Location data not available.');
+		alert('code: ' + error.code + '\n message: ' + error.message + '\n');
 	}
 }
