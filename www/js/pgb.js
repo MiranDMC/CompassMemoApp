@@ -147,22 +147,22 @@ function deleteLocation()
 				fileSys.root.getDirectory( gPhotosDirectory, {create:true, exclusive: false},
 					function(directory) 
 					{
-						alert("b");
-						/*directory.getFile(gListCurrFile, {create: false, exclusive: false},
+						alert("b " + gListCurrFile);
+						directory.getFile(gListCurrFile, {create: false, exclusive: false},
 							function(file) 
 							{
 								alert("c");
-								file.remove(
+								/*file.remove(
 									function()
 									{
 										alert("d");
 										updateLocationsList();
 									},
 									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
-								);
+								);*/
 							},
 							function(err) {alert('ERROR: failed to get file. ' + error.message);}
-						);*/
+						);
 					}, 
 					function(err) {alert('ERROR: failed to get output directory. ' + error.message);} 
 				);
