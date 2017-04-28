@@ -148,7 +148,7 @@ function deleteLocation()
 					function(directory) 
 					{
 						alert("b");
-						directory.getFile(gListCurrFile, {create: false, exclusive: false},
+						/*directory.getFile(gListCurrFile, {create: false, exclusive: false},
 							function(file) 
 							{
 								alert("c");
@@ -162,7 +162,7 @@ function deleteLocation()
 								);
 							},
 							function(err) {alert('ERROR: failed to get file. ' + error.message);}
-						);
+						);*/
 					}, 
 					function(err) {alert('ERROR: failed to get output directory. ' + error.message);} 
 				);
