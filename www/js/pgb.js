@@ -112,7 +112,7 @@ function addNewLocation()
 	navigator.camera.getPicture(
 		photoSuccess,
 		function(err) {alert('ERROR: Unable to get picture. ' + error.message);},
-		{ quality: 70, targetWidth: 25, targetHeight: 25 }
+		{ quality: 70, targetWidth: 200, targetHeight: 200 }
 	);
 }
 
@@ -125,7 +125,7 @@ function navigateToLocation()
 	}
 	
 	$("#navInfoImg").attr("src", gListCurrImg);
-	$("#navInfoName").attr("src", gListCurrName);
+	$("#navInfoName").text(gListCurrName);
 	
 	$.mobile.changePage('#navigate');
 }
@@ -211,19 +211,6 @@ function updateLocationsList()
 								html += '<h2>' + name + '</h2>';
 								html += '</a></li>';
 							}
-							
-							// assign item click event
-							/*$('#locationsList ul').children('li').children('a').bind('touchstart mousedown', 
-								function(e) 
-								{
-									alert("click");
-									gListCurrName = $(this).attr('data-custom-name');
-									gListCurrFile = $(this).attr('data-custom-file');
-									gListCurrImg = $(this).attr('data-img');
-									gListCurrLon = $(this).attr('data-custom-lon');
-									gListCurrLat = $(this).attr('data-custom-lat');
-									alert(gListCurrName);
-								});*/
 							
 							$('#locationsList').html(html);
 							$('#locationsList').listview('refresh');
