@@ -10,6 +10,12 @@ var gListCurrLat;
 var gTargetLon;
 var gTargetLat;
 
+var geolocation = false;
+if(navigator.geolocation) // try use HTML5 geolocation
+{
+	geolocation = navigator.geolocation;
+} 
+
 var gGeoOptions = {
   enableHighAccuracy: true, 
   maximumAge : 30000,
@@ -71,17 +77,22 @@ function init()
 function onDeviceReady()
 {
 	//navigator.notification.beep(2);
-		
-	// ask for location
-	if (navigator.geolocation)
+	
+	if(!geolocation)
 	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		// ask for location
+		if (navigator.geolocation)
+		{
+			geolocation = navigator.geolocation;
+		}
+		else
+		{
+			alert('ERROR: Geolocation is not supported by your device!');
+		}
 	}
-	else
-	{
-		alert('ERROR: Geolocation is not supported by your device!');
-	}
+	
+	geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	
 	// load photos from storage
 	updateLocationsList();
