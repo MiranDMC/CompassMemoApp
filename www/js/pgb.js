@@ -11,11 +11,11 @@ var gTargetLon;
 var gTargetLat;
 
 var geolocation = false;
-if(navigator.geolocation) // try use HTML5 geolocation
+/*if(navigator.geolocation) // try use HTML5 geolocation
 {
 	alert('USING html geolocation');
 	geolocation = navigator.geolocation;
-} 
+}//*/
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
