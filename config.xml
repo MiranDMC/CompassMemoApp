@@ -17,10 +17,4 @@
 	<plugin name="cordova-plugin-camera" spec="*" />
 	<plugin name="cordova-plugin-geolocation" spec="*" />
 	<plugin name="cordova-plugin-file" spec="*" />
-	
-	<feature name="http://api.phonegap.com/1.0/device" />
-	<preference name="permissions" value="none" />
-	<preference name="target-device" value="universal" />
-	<preference name="android-minSdkVersion" value="7" />
-	<preference name="android-installLocation" value="auto" />
 </widget>
