@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-	<widget xmlns = "http://www.w3.org/ns/widgets"
-		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id = "compassMemoApp"
-		version = "1.0.0" >
+<widget xmlns = "http://www.w3.org/ns/widgets" 
+	xmlns:gap = "http://phonegap.com/ns/1.0" 
+	id = "compassMemoApp" 
+	version = "1.0.0" >
 
 	<icon src="img/icon.png" />
 	<gap:splash src="img/icon.png" />
@@ -17,5 +17,6 @@
 	<plugin name="cordova-plugin-camera" spec="*" />
 	<plugin name="cordova-plugin-geolocation" spec="*" />
 	<plugin name="cordova-plugin-file" spec="*" />
-
-	</widget>
+	
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+</widget>
