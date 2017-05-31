@@ -12,8 +12,8 @@ var gTargetLat;
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
-  maximumAge : 30000,
-  timeout : 60
+  maximumAge : 30000, 
+  timeout : 27000
 };
 
 if (typeof(Number.prototype.toRad) === "undefined")
@@ -59,6 +59,7 @@ function geoAngleFromCoordinate(lon1, lat1, lon2, lat2)
     var brng = Math.atan2(y, x);
     brng = brng.toDeeg();
     brng = (brng + 360.0) % 360.0;
+    brng = 360.0 - brng; // count degrees counter-clockwise - remove to make clockwise
     return brng;
 }
 
@@ -86,7 +87,6 @@ function onDeviceReady()
 	// load photos from storage
 	updateLocationsList();
 }
-document.addEventListener("deviceready", onDeviceReady, false); // add listener my self to be double sure
 
 function updateCompass(angle)
 {	
@@ -297,19 +297,12 @@ function onGpsUpdated(position)
 	if(gListCurrName)
 	{
 		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+	
 		$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
 		
-		var angleHeading = position.coords.heading;
+		var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
 		
-		if(angleHeading)
-		{
-			var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
-			updateCompass(angleToTarget - angleHeading);
-		}
-		else
-		{
-			updateCompass('Please start walking');
-		}
+		updateCompass(angleToTarget);
 	}
 	else
 	{
@@ -324,9 +317,5 @@ function onGpsFailed(error)
 	{
 		updateCompass('Error: Location data not available.');
 		alert('code: ' + error.code + '\n message: ' + error.message + '\n');
-	}
-	else
-	{
-		updateCompass('Waiting for GPS data...');
 	}
 }

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns = "http://www.w3.org/ns/widgets" 
-	xmlns:gap = "http://phonegap.com/ns/1.0" 
-	id = "compassMemoApp" 
-	version = "1.0.0" >
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+		id          = "compassMemoApp"
+        version     = "1.0.0" >
 
 	<icon src="img/icon.png" />
-	<splash src="img/icon.png" />
-	<name>Compass Memo</name>
-	<description>Navigate to memorized locations</description>
-	<author>Piotr Miranowicz</author>
+    <name>Compass Memo</name>
+    <description>Navigate to memorized locations</description>
+    <author href="" email="piotr.miranowicz@microsoft.wsei.edu.pl">Piotr Miranowicz</author>
 	
 	<platform name="android" />
 	
 	<plugin name="cordova-plugin-device" spec="*" />
 	<plugin name="cordova-plugin-dialogs" spec="*" />
-	<plugin name="cordova-plugin-camera" spec="*" />
-	<plugin name="cordova-plugin-geolocation" spec="1.0.0" />
-	<plugin name="cordova-plugin-file" spec="*" />
+	<plugin name="cordova-plugin-camera" spec="*"/>
+	<plugin name="cordova-plugin-geolocation" spec="*"/>
+	<plugin name="cordova-plugin-file" spec="*"/>
+
 </widget>
