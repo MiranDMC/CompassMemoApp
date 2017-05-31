@@ -17,7 +17,4 @@
 	<plugin name="cordova-plugin-camera" spec="*" />
 	<plugin name="cordova-plugin-geolocation" spec="2.4.2" />
 	<plugin name="cordova-plugin-file" spec="*" />
-	
-	<feature name="http://api.phonegap.com/1.0/geolocation" />
-	<access origin="http://phonegap.com" subdomains="true" />
 </widget>
