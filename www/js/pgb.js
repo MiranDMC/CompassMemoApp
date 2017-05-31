@@ -12,7 +12,7 @@ var gTargetLat;
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
-  maximumAge : 0,
+  maximumAge : 30000,
   timeout : 60
 };
 
