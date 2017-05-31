@@ -5,7 +5,7 @@
 	version = "1.0.0" >
 
 	<icon src="img/icon.png" />
-	<gap:splash src="img/icon.png" />
+	<splash src="img/icon.png" />
 	<name>Compass Memo</name>
 	<description>Navigate to memorized locations</description>
 	<author>Piotr Miranowicz</author>
@@ -15,7 +15,7 @@
 	<plugin name="cordova-plugin-device" spec="*" />
 	<plugin name="cordova-plugin-dialogs" spec="*" />
 	<plugin name="cordova-plugin-camera" spec="*" />
-	<plugin name="cordova-plugin-geolocation" spec="*" />
+	<plugin name="cordova-plugin-geolocation" spec="2.4.2" />
 	<plugin name="cordova-plugin-file" spec="*" />
 	
 	<feature name="http://api.phonegap.com/1.0/geolocation" />
