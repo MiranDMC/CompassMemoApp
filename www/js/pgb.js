@@ -92,6 +92,10 @@ function onDeviceReady()
 		}
 	}
 	
+	cordova.plugins.locationAccuracy.request(function(err) {alert('OK accuracy');}, 
+		function(err) {alert('ERROR: failed to request high location accuracy: ' + err.message);}, 
+		cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+	
 	geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	
