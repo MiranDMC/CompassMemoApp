@@ -79,7 +79,7 @@ function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 	
-	if(!geolocation)
+	/*if(!geolocation)
 	{
 		// ask for location
 		if (navigator.geolocation)
@@ -90,7 +90,7 @@ function onDeviceReady()
 		{
 			alert('ERROR: Geolocation is not supported by your device!');
 		}
-	}
+	}*/
 	
 	cordova.plugins.locationAccuracy.request(function(err) {alert('OK accuracy');}, 
 		function(err) {alert('ERROR: failed to request high location accuracy: ' + err.message);}, 
@@ -98,6 +98,9 @@ function onDeviceReady()
 	
 	geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	
+	navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	
 	// load photos from storage
 	updateLocationsList();
