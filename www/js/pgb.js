@@ -13,9 +13,8 @@ var gTargetLat;
 var geolocation = false;
 if(navigator.geolocation) // try use HTML5 geolocation
 {
-	alert('USING html geolocation');
 	geolocation = navigator.geolocation;
-}//*/
+}
 
 var gGeoOptions = {
   enableHighAccuracy: true, 
@@ -79,28 +78,28 @@ function onDeviceReady()
 {
 	//navigator.notification.beep(2);
 	
-	/*if(!geolocation)
+	var geolocationOk = false;
+	
+	// html geolocation
+	if(geolocation)
 	{
-		// ask for location
-		if (navigator.geolocation)
-		{
-			geolocation = navigator.geolocation;
-		}
-		else
-		{
-			alert('ERROR: Geolocation is not supported by your device!');
-		}
-	}*/
+		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		geolocationOk = true;
+	}
 	
-	cordova.plugins.locationAccuracy.request(function(err) {alert('OK accuracy');}, 
-		function(err) {alert('ERROR: failed to request high location accuracy: ' + err.message);}, 
-		cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+	// phone gap
+	if(navigator.geolocation)
+	{
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		geolocationOk = true;
+	}
 	
-	geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	
-	navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	if(!geolocationOk)
+	{
+		alert('ERROR: geolocation is not supported by your device.');
+	}
 	
 	// load photos from storage
 	updateLocationsList();
