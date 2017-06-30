@@ -341,6 +341,8 @@ function onGpsUpdated(position)
 			$('#distance').text('');
 		}
 	}
+	
+	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 }
 
 function onGpsFailed(error)
