@@ -19,8 +19,8 @@ if(navigator.geolocation) // try use HTML5 geolocation
 var gGeoOptions = 
 {
   enableHighAccuracy: true, 
-  //maximumAge : 30000,
-  //timeout : 1
+  //maximumAge : 5,
+  //timeout : 30
 };
 
 if (typeof(Number.prototype.toRad) === "undefined")
@@ -340,6 +340,8 @@ function onGpsUpdated(position)
 		}*/
 		alert('GPs') ;
 	}
+	
+	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 }
 
 function onGpsFailed(err)
