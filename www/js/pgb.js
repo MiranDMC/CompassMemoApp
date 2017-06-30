@@ -19,8 +19,8 @@ if(navigator.geolocation) // try use HTML5 geolocation
 var gGeoOptions = 
 {
   enableHighAccuracy: true, 
-  maximumAge : 30000,
-  timeout : 1
+  //maximumAge : 30000,
+  //timeout : 1
 };
 
 if (typeof(Number.prototype.toRad) === "undefined")
@@ -360,6 +360,6 @@ function onGpsFailed(error)
 	}
 	else
 	{
-		//updateCompass('Waiting for GPS data...');
+		updateCompass('Waiting for GPS data...');
 	}
 }
