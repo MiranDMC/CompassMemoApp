@@ -343,6 +343,7 @@ function onGpsUpdated(position)
 	}
 	
 	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 }
 
 function onGpsFailed(err)
