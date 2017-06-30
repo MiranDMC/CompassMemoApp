@@ -10,10 +10,17 @@
 	<description>Navigate to memorized locations</description>
 	<author>Piotr Miranowicz</author>
 	
-	<platform name="android">
-		<preference name="android-minSdkVersion" value="14" />
-		<allow-intent href="market:*" />
-	</platform>
+    <platform name="android">
+        <preference name="android-minSdkVersion" value="20" />
+        <preference name="android-targetSdkVersion" value="23" />
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+</platform>
 	
 	<plugin name="cordova-plugin-device" spec="*" />
 	<plugin name="cordova-plugin-dialogs" spec="*" />
