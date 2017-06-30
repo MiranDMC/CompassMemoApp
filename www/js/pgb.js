@@ -82,20 +82,20 @@ function onDeviceReady()
 	var geolocationOk = false;
 	
 	// html geolocation	
-	/*if(geolocation)
+	if(geolocation)
 	{
 		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		geolocationOk = true;
-	}*/
-	
-	// phone gap
-	if(navigator.geolocation)
-	{
-		navigator.geolocation.watchPosition(onGpsUpdatedCordova, onGpsFailed, gGeoOptions);
-		//navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		//geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
 	}
+	
+	// phone gap
+	/*if(navigator.geolocation)
+	{
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		//navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		geolocationOk = true;
+	}*/
 	
 	if(!geolocationOk)
 	{
@@ -309,22 +309,6 @@ function updateLocationsList()
 		function(err) {alert('ERROR: failed to access file system. ' + error.message);} );
 }
 
-function onGpsUpdatedCordova(position)
-{
-	// html
-	if(geolocation)
-	{
-		//geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	}
-	
-	/*// phone gap
-	if(navigator.geolocation)
-	{
-		//navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	}*/
-}
 
 function onGpsUpdated(position)
 {
