@@ -339,11 +339,12 @@ function onGpsUpdated(position)
 			$('#distance').text('');
 		}
 		
-		alert('GPs') ;
+		alert('GPs');
 	}
-	
-	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	else
+	{
+		alert(position);
+	}
 }
 
 function onGpsFailed(err)
