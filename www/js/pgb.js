@@ -90,12 +90,12 @@ function onDeviceReady()
 	}
 	
 	// phone gap
-	/*if(navigator.geolocation)
+	if(navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
-	}*/
+	}
 	
 	if(!geolocationOk)
 	{
