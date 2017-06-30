@@ -315,9 +315,9 @@ function updateLocationsList()
 
 function onGpsUpdated(position)
 {
-	/*if(position != undefined && position.coords !== undefined && position.coords.heading !== undefined)
+	if(position != undefined && position.coords !== undefined && position.coords.heading !== undefined)
 	{		
-		gLastPosition = position;
+		/*gLastPosition = position;
 		
 		if(gListCurrName)
 		{
@@ -340,16 +340,14 @@ function onGpsUpdated(position)
 		{
 			updateCompass('');
 			$('#distance').text('');
-		}
+		}*/
 		
 		alert('GPs');
 	}
 	else
 	{
 		alert(position);
-	}*/
-	
-	alert(String(position));
+	}
 }
 
 function onGpsFailed(err)
