@@ -166,18 +166,18 @@ function addNewLocation()
 						{
 							entry.moveTo(directory, fileName,  
 								function(entry){ updateLocationsList(); },  // succcess, refresh locations list
-								function(err) {alert('ERROR: failed to move picture into target directory. ' + error.message);});
+								function(err) {alert('ERROR: failed to move picture into target directory. ' + err.message);});
 						},
-						function(err) {alert('ERROR: failed to get output directory. ' + error.message);} );
+						function(err) {alert('ERROR: failed to get output directory. ' + err.message);} );
 				},
-				function(err) {alert('ERROR: failed to access file system. ' + error.message);} );
+				function(err) {alert('ERROR: failed to access file system. ' + err.message);} );
 			}
-		, function(err) {alert('ERROR: Unable to resolve image location. ' + error.code + ' ' + error.message);} );
+		, function(err) {alert('ERROR: Unable to resolve image location. ' + err.code + ' ' + err.message);} );
 	}
 	
 	navigator.camera.getPicture(
 		photoSuccess,
-		function(err) {alert('ERROR: Unable to get picture. ' + error.message);},
+		function(err) {alert('ERROR: Unable to get picture. ' + err.message);},
 		{ quality: 70, targetWidth: 200, targetHeight: 200 }
 	);
 }
@@ -223,16 +223,16 @@ function deleteLocation()
 									{
 										updateLocationsList();
 									},
-									function(err) {alert('ERROR: failed remove file. ' + error.message);} 
+									function(err) {alert('ERROR: failed remove file. ' + err.message);} 
 								);
 							},
-							function(err) {alert('ERROR: failed to get file. ' + error.message);}
+							function(err) {alert('ERROR: failed to get file. ' + err.message);}
 						);
 					}, 
-					function(err) {alert('ERROR: failed to get output directory. ' + error.message);} 
+					function(err) {alert('ERROR: failed to get output directory. ' + err.message);} 
 				);
 			},
-			function(err) {alert('ERROR: failed to access file system. ' + error.message);}
+			function(err) {alert('ERROR: failed to access file system. ' + err.message);}
 		);
 	}
 }
@@ -302,11 +302,11 @@ function updateLocationsList()
 							$('#locationsList').html(html);
 							$('#locationsList').listview('refresh');
 						},
-						function(err) {alert('ERROR: failed to get output directory. ' + error.message);});
+						function(err) {alert('ERROR: failed to get output directory. ' + err.message);});
 				},
-				function(err) {alert('ERROR: failed to get output directory. ' + error.message);} );
+				function(err) {alert('ERROR: failed to get output directory. ' + err.message);} );
 		},
-		function(err) {alert('ERROR: failed to access file system. ' + error.message);} );
+		function(err) {alert('ERROR: failed to access file system. ' + err.message);} );
 }
 
 
@@ -345,12 +345,12 @@ function onGpsUpdated(position)
 	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 }
 
-function onGpsFailed(error)
+function onGpsFailed(err)
 {
-	if(error.code !== 3) // not timeout
+	if(err.code !== 3) // not timeout
 	{
 		updateCompass('Error: Location data not available.');
-		alert('code: ' + error.code + '\n message: ' + error.message + '\n');
+		alert('code: ' + err.code + '\n message: ' + err.message + '\n');
 	}
 	else
 	{
