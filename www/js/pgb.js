@@ -334,6 +334,20 @@ function onGpsUpdated(position)
 		updateCompass('');
 		$('#distance').text('');
 	}
+	
+	// html
+	/*if(geolocation)
+	{
+		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	}
+	
+	// phone gap
+	if(navigator.geolocation)
+	{
+		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	}*/
 }
 
 function onGpsFailed(error)
@@ -345,6 +359,6 @@ function onGpsFailed(error)
 	}
 	else
 	{
-		updateCompass('Waiting for GPS data...');
+		//updateCompass('Waiting for GPS data...');
 	}
 }
