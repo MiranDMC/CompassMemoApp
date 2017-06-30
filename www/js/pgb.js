@@ -80,13 +80,13 @@ function onDeviceReady()
 	
 	var geolocationOk = false;
 	
-	// html geolocation
-	if(geolocation)
+	// html geolocation	
+	/*if(geolocation)
 	{
 		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
-	}
+	}*/
 	
 	// phone gap
 	if(navigator.geolocation)
