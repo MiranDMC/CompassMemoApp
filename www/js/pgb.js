@@ -90,12 +90,12 @@ function onDeviceReady()
 	}
 	
 	// phone gap
-	if(navigator.geolocation)
+	/*if(navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
-	}
+	}*/
 	
 	if(!geolocationOk)
 	{
@@ -313,9 +313,7 @@ function updateLocationsList()
 function onGpsUpdated(position)
 {
 	if('coords' in position && 'heading' in position.coords)
-	{
-		if(position.coords.heading)
-		
+	{		
 		gLastPosition = position;
 		
 		if(gListCurrName)
@@ -341,8 +339,6 @@ function onGpsUpdated(position)
 			$('#distance').text('');
 		}
 	}
-	
-	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 }
 
 function onGpsFailed(err)
