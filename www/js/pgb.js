@@ -10,18 +10,21 @@ var gListCurrLat;
 var gTargetLon;
 var gTargetLat;
 
-var geolocation = false;
-if(navigator.geolocation) // try use HTML5 geolocation
-{
-	geolocation = navigator.geolocation;
-}
-
 var gGeoOptions = 
 {
   enableHighAccuracy: true, 
   //maximumAge : 5,
   //timeout : 30
 };
+
+//var geolocation = false;
+if(navigator.geolocation) // try use HTML5 geolocation
+{
+	//geolocation = navigator.geolocation;
+	navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+	navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+}
+
 
 if (typeof(Number.prototype.toRad) === "undefined")
 {
@@ -82,12 +85,12 @@ function onDeviceReady()
 	var geolocationOk = false;
 	
 	// html geolocation	
-	if(geolocation)
+	/*if(geolocation)
 	{
 		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
-	}
+	}*/
 	
 	// phone gap
 	if(navigator.geolocation)
