@@ -312,7 +312,7 @@ function updateLocationsList()
 
 function onGpsUpdated(position)
 {
-	if(position != undefined && position.coords !== undefined && position.coords.heading !== undefined)
+	/*if(position != undefined && position.coords !== undefined && position.coords.heading !== undefined)
 	{		
 		gLastPosition = position;
 		
@@ -344,7 +344,9 @@ function onGpsUpdated(position)
 	else
 	{
 		alert(position);
-	}
+	}*/
+	
+	alert(String(position));
 }
 
 function onGpsFailed(err)
