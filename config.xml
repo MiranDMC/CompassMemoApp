@@ -10,10 +10,15 @@
 	<description>Navigate to memorized locations</description>
 	<author>Piotr Miranowicz</author>
 	
+	<platform name="android">
+		<preference name="android-minSdkVersion" value="14" />
+		<allow-intent href="market:*" />
+	</platform>
+	
 	<plugin name="cordova-plugin-device" spec="*" />
 	<plugin name="cordova-plugin-dialogs" spec="*" />
 	<plugin name="cordova-plugin-whitelist" spec="*" />
 	<plugin name="cordova-plugin-camera" spec="*" />
-	<plugin name="cordova-plugin-geolocation" spec="0.3.6" />
+	<plugin name="cordova-plugin-geolocation" spec="~2.4.2" />
 	<plugin name="cordova-plugin-file" spec="*" />
 </widget>
