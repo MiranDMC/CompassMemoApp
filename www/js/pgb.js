@@ -314,7 +314,7 @@ function onGpsUpdated(position)
 {
 	if(position != undefined && position.coords !== undefined && position.coords.heading !== undefined)
 	{		
-		/*gLastPosition = position;
+		gLastPosition = position;
 		
 		if(gListCurrName)
 		{
@@ -337,7 +337,8 @@ function onGpsUpdated(position)
 		{
 			updateCompass('');
 			$('#distance').text('');
-		}*/
+		}
+		
 		alert('GPs') ;
 	}
 	
