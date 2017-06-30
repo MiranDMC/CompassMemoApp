@@ -337,18 +337,18 @@ function onGpsUpdated(position)
 	}
 	
 	// html
-	/*if(geolocation)
+	if(geolocation)
 	{
-		geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		//geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 	}
 	
 	// phone gap
 	if(navigator.geolocation)
 	{
-		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		//navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-	}*/
+	}
 }
 
 function onGpsFailed(error)
