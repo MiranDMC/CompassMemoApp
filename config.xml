@@ -10,19 +10,10 @@
 	<description>Navigate to memorized locations</description>
 	<author>Piotr Miranowicz</author>
 	
-	<access origin="*" />
-	<allow-intent href="geo:*" />
-	
-	<platform name="android">
-		<preference name="android-minSdkVersion" value="14" />
-		<allow-intent href="market:*" />
-	</platform>
-	
 	<plugin name="cordova-plugin-device" spec="*" />
 	<plugin name="cordova-plugin-dialogs" spec="*" />
+	<plugin name="cordova-plugin-whitelist" spec="*" />
 	<plugin name="cordova-plugin-camera" spec="*" />
 	<plugin name="cordova-plugin-geolocation" spec="0.3.6" />
-	<plugin name="cordova-plugin-request-location-accuracy" source="npm" />
-	<plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="~3.2.2" />
 	<plugin name="cordova-plugin-file" spec="*" />
 </widget>
