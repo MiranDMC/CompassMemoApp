@@ -90,12 +90,12 @@ function onDeviceReady()
 	}
 	
 	// phone gap
-	/*if(navigator.geolocation)
+	if(navigator.geolocation)
 	{
 		navigator.geolocation.watchPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
-		//navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
+		navigator.geolocation.getCurrentPosition(onGpsUpdated, onGpsFailed, gGeoOptions);
 		geolocationOk = true;
-	}*/
+	}
 	
 	if(!geolocationOk)
 	{
@@ -312,29 +312,34 @@ function updateLocationsList()
 
 function onGpsUpdated(position)
 {
-	gLastPosition = position;
-	
-	if(gListCurrName)
+	if('coords' in position && 'heading' in position.coords)
 	{
-		var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
-		$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
+		if(position.coords.heading)
 		
-		var angleHeading = position.coords.heading;
+		gLastPosition = position;
 		
-		if(angleHeading)
+		if(gListCurrName)
 		{
-			var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
-			updateCompass(angleToTarget - angleHeading);
+			var dist = geoDistance(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+			$('#distance').text('Distance: ' + Math.round(1000.0 * dist) + 'm');
+			
+			var angleHeading = position.coords.heading;
+			
+			if(angleHeading)
+			{
+				var angleToTarget = geoAngleFromCoordinate(position.coords.longitude, position.coords.latitude, gTargetLon, gTargetLat);
+				updateCompass(angleToTarget - angleHeading);
+			}
+			else
+			{
+				updateCompass('Please start walking');
+			}
 		}
 		else
 		{
-			updateCompass('Please start walking');
+			updateCompass('');
+			$('#distance').text('');
 		}
-	}
-	else
-	{
-		updateCompass('');
-		$('#distance').text('');
 	}
 }
 
